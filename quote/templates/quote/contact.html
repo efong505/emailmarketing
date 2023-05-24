@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block header %}Contact Us{% endblock %}
+{% block content %}
+
+
+{% if sent %}
+<h1>E-mail successfully sent</h1>
+<p>
+    Message was sent.
+</p>
+{% else %}
+<h2>Fill out the form below to email us:</h2>
+<div class="row gtr-uniform">
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <div class="col-12">
+            <ul class="actions">
+                <li><input type="submit" value="Send Message" class="primary" /></li>
+                <li><input type="reset" value="Reset" /></li>
+            </ul>
+        </div>
+    </form>
+    
+</div>
+
+{% endif %}
+
+{% comment %} <form method="post" action="#">
+    <div class="row gtr-uniform">
+        <div class="col-6 col-12-xsmall">
+            <input type="text" name="name" id="name" value="" placeholder="Name" />
+        </div>
+        <div class="col-6 col-12-xsmall">
+            <input type="email" name="email" id="email" value="" placeholder="Email" />
+        </div>
+        <!-- Break -->
+        <div class="col-12">
+            <input type="text" name="subject" id="subject" value="" placeholder="Subject" />
+        </div>
+        <!-- Break -->
+        
+        
+        <div class="col-12">
+            <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+        </div>
+        <!-- Break -->
+        <div class="col-12">
+            <ul class="actions">
+                <li><input type="submit" value="Send Message" class="primary" /></li>
+                <li><input type="reset" value="Reset" /></li>
+            </ul>
+        </div>
+    </div>
+</form> {% endcomment %}
+{% endblock %}

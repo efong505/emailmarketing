@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Subscribe{% endblock %}
+{% block header %}Subscribe{% endblock %}
+{% block content %}
+
+
+{% if subscribed %}
+<h1>Subscribed successfully</h1>
+<p>
+    Thank you for subscribing to our mailing list. 
+</p>
+{% else %}
+<h2>Fill out the form below to subscribe to our mailing list:</h2>
+<p>We'll keep you up to date on all of the latest news and happenings right to your email inbox.</p>
+<div class="row gtr-200">
+    <div class="col-12 col-12-medium">
+    <form method="post">
+        {{ form.non_field_errors }}
+        <div class="row gtr-uniform">
+            
+            <div class="col-6 col-12-xsmall">
+                {{ form.first_name}}
+            </div>
+            <div class="col-6 col-12-xsmall">
+                {{ form.last_name}}
+            </div>
+            {% if form.email.errors %}
+            <div class="col-12 col-12-xsmall">
+                {{ form.email.errors }}
+            </div>
+            {% endif %}
+            
+            <div class="col-8 col-12-xsmall">
+                {{ form.email}}
+            </div>
+            <div class="col-4 col-12-xsmall">
+                {{ form.phone}}
+            </div>
+            <div class="col-4 col-12-xsmall">
+                {{ form.city}}
+            </div>
+            <div class="col-2 col-12-xsmall">
+                {{ form.state}}
+            </div>
+            <div class="col-6 col-12-xsmall">
+                {{ form.zip}}
+            </div>
+            {% csrf_token %}
+            
+       
+        </div>
+        
+        
+        {% comment %} {{ form.as_p }} {% endcomment %}
+       
+        <!--Buttons-->
+        <br />
+        <div class="col-12">
+            <ul class="actions">
+                <li><input type="submit" value="Subscribe" class="primary" /></li>
+                <li><input type="reset" value="Reset" /></li>
+            </ul>
+        </div>
+    </form>
+    <br>
+</div>
+</div>
+
+{% endif %}
+{% endblock %}

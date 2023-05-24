@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load quote_extras %}
+{% block title %}Quote #{{ quote.id }} for {{ quote.name }}{% endblock %}
+{% block header %}Quote #{{ quote.id }} for {{ quote.name }}{% endblock %}
+{% block h4 %}Company: {{ quote.company }}{% endblock h4 %}
+{% block content %}
+  <!-- Table -->
+  <h3>Record</h3>
+
+													
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                {% if request.user.is_superuser   or request.user|is_in_testing_group %}<th><a href="{% url 'quote_edit' quote.id %}">Edit<a/></th>{% endif %}
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>ID</th><td>{{ quote.id }}</td>
+                </tr>
+                <tr>
+                    <th>Client Name</th><td>{{ quote.name }}</td>
+                </tr>
+                <tr>
+                    <th>Company</th><td>{{ quote.company }} </td>
+                </tr>
+                <tr>
+                    <th>Desciption</th><td>{{ quote.description }} </td>
+                </tr>
+                <tr>
+                    <th>Submited</th><td>{{ quote.created }}</td>
+                </tr>
+                <tr>
+                    <th>Site Status</th><td>{{ quote.stat }}</td>
+                </tr>
+                <tr>
+                    <th>Quoted</th><td>{{ quote.quoted }}</td>
+                </tr>
+                <tr>
+                    <th>Quoted Price</th><td>{% if quote.quoted_price  %}{{ quote.quoted_price }} {% else %}--{% endif %}</td>														
+                </tr>
+                <tr>
+                    <th>Submitted By</th><td>{{ quote.requester | title }}</td>
+                </tr>
+                <tr>
+                    <th>Last Updated</th><td>{{ quote.updated }}</td>
+                </tr>              
+          </tbody>
+        </table>
+        <p><a href="{% url 'quotes_list' %}"><== Back to List</a></p>
+     </div>
+{% endblock %}
